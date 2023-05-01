@@ -53,7 +53,12 @@ public class BtreeMap <T1 extends Comparable<T1>, T2> implements Comparable<T1>{
                     for (int i = 0; i < head.countKey; ++i) {
                         node tmpNode = (node) head.pairs.get(i);
                         if (key.compareTo((T1) tmpNode.key) == 0) {
-                            System.out.println("В дереве под ключом " + key + " хранится: " + tmpNode.data);
+                            if (data == null)
+                                System.out.println("В дереве под ключом " + key + " хранится: " + tmpNode.data);
+                            else {
+                                head.pairs.set(i, new node(key, data));
+                                System.out.println("Элемент по ключу "+key+" заменён.");
+                            }
                             marker = true;
                         }
                     }
@@ -67,6 +72,9 @@ public class BtreeMap <T1 extends Comparable<T1>, T2> implements Comparable<T1>{
 
     public void FindEl(T1 key){                                     // происк элемента по ключу
         RecursiveFindPosision(head, key, null, false);
+    }
+    public void ChangeEl(T1 key, T2 data){
+        RecursiveFindPosision(head, key, data, false);
     }
     public void clear(){                                            // полная очистка дерева
         RecursiveClearALl(head);
