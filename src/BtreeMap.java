@@ -73,7 +73,7 @@ public class BtreeMap <T1 extends Comparable<T1>, T2> implements Comparable<T1>{
     public void FindEl(T1 key){                                     // происк элемента по ключу
         RecursiveFindPosision(head, key, null, false);
     }
-    public void ChangeEl(T1 key, T2 data){
+    public void ChangeEl(T1 key, T2 data){                          // изменение значения по ключу
         RecursiveFindPosision(head, key, data, false);
     }
     public void clear(){                                            // полная очистка дерева
