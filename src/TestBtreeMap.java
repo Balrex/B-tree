@@ -15,6 +15,8 @@ public class TestBtreeMap {
         test_Btree.AddEl(17, "Boby");
         test_Btree.AddEl(24, "Marta");
         test_Btree.FindEl(17);
+        test_Btree.ChangeEl(17, "Giny");
+        test_Btree.FindEl(17);
         System.out.println("------------------------");
         test_Btree.print();
     }
