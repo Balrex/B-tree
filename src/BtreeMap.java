@@ -28,13 +28,27 @@ public class BtreeMap <T1 extends Comparable<T1>, T2> implements Comparable<T1>{
     private void RecursiveFindPosision (work head, T1 key, T2 data, boolean marker){
         if (head != null) {
             if (head.countChildren != 0) {
+                boolean Go = true;
                 int index = head.countKey;
                 for (int i = 0; i < head.countKey; ++i) {
                     node tmpNode = (node) head.pairs.get(i);
                     if (key.compareTo((T1) tmpNode.key) < 0)
                         index = i;
+                    else if (key.compareTo((T1) tmpNode.key) == 0){
+                        Go = false;
+                        if (marker)
+                            System.out.println("В дерево уже есть ключ "+key+". Пара не довлена в дерево.");
+                        else if (data == null)
+                            System.out.println("В дереве под ключом " + key + " хранится: " + tmpNode.data);
+                        else {
+                            head.pairs.set(i, new node(key, data));
+                            System.out.println("Элемент по ключу "+key+" заменён.");
+                        }
+                        break;
+                    }
                 }
-                RecursiveFindPosision((work) head.children.get(index), key, data, marker);
+                if (Go)
+                    RecursiveFindPosision((work) head.children.get(index), key, data, marker);
             } else {
                 if (marker) {
                     if (head.countKey + 1 <= 2 * t - 1)
